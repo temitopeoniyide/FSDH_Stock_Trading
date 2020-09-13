@@ -19,6 +19,7 @@ namespace Trading_Service.Persistence.EntityConfigurations
             builder.Property(e => e.UserId).HasColumnType("bigint");
             builder.Property(e => e.StockPrice).HasColumnType("money");
             builder.Property(e => e.StockQuantity).HasColumnType("decimal(18,2)");
+            builder.Property(e => e.Cost).HasColumnType("money");
             builder.Property(e => e.PurchaseTimestamp).HasColumnType("datetime").HasDefaultValueSql("(getdate())");
 
         }

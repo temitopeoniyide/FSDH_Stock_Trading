@@ -9,7 +9,7 @@ namespace Trading_Service.Domain.IServices
 {
  public   interface IStocksService
     {
-        Task<AddCompanyResponse> PurchaseStock(AddNewCompany user);
+        Task<PurchaseStockResponse> PurchaseStock(PurchaseStock purchase);
 
     }
 }

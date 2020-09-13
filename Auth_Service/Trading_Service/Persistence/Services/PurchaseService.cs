@@ -2,11 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
+using System.Threading;
 using System.Threading.Tasks;
 using Trading_Service.Domain;
 using Trading_Service.Domain.IServices;
 using Trading_Service.Domain.Models;
 using Trading_Service.JWT;
+using Trading_Service.Presentation.Responses;
 using Trading_Service.Utilities;
 
 namespace Trading_Service.Persistence.Services
@@ -24,9 +27,20 @@ namespace Trading_Service.Persistence.Services
             _logWriter = logWriter;
             _tokenManager = tokenManager;
         }
-        public Task<IEnumerable<TblPurchase>> GetMyPurchase()
+        public async Task<GetMyPurchases> GetMyPurchase()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var userid = long.Parse(Thread.CurrentPrincipal.Identity.Name);
+
+                var purchases = await _unitofwork.Purchase.WhereAsync(o => o.UserId == userid);
+                return new GetMyPurchases { Data = purchases, ResponseCode = "00" };
+            }
+            catch(Exception ex)
+            {
+                return new GetMyPurchases { ResponseCode = "99",ResponseMessage=ex.Message };
+
+            }
         }
     }
 }

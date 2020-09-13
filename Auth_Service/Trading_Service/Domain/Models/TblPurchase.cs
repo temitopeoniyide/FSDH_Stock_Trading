@@ -24,5 +24,7 @@ namespace Trading_Service.Domain.Models
         public long UserId {get; set;}
         [JsonProperty(PropertyName = "companyId")]
         public long CompanyId { get; set;}
+        [JsonProperty(PropertyName = "cost")]
+        public decimal Cost { get; set; }
     }
 }

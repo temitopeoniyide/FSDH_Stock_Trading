@@ -4,12 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Trading_Service.Domain.Models;
 using Trading_Service.Presentation.Payload;
+using Trading_Service.Presentation.Responses;
 
 namespace Trading_Service.Domain.IServices
 {
-    interface IPurchaseService
+    public interface IPurchaseService
     {
-        Task<IEnumerable<TblPurchase>> GetMyPurchase();
+        Task<GetMyPurchases> GetMyPurchase();
 
     }
 }
